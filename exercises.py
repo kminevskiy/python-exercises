@@ -95,3 +95,118 @@ def unique_number(number):
             result[number] = 1
     return True
 
+def sum_square_difference(number):
+    squared_total = 0
+    squares_total = 0
+    for n in range(1, number + 1):
+        squared_total += n
+        squares_total += n ** 2
+    return squared_total ** 2 - squares_total
+
+def bubble_sort(array):
+    updated = True
+    while updated:
+        updated = False
+        for index, element in enumerate(array):
+            try:
+                if element > array[index + 1]:
+                    array[index] = array[index + 1]
+                    array[index + 1] = element
+                    updated = True
+            except IndexError:
+                pass
+    return array
+
+def copy_strings(string1, string2 = ""):
+    if len(string1) == 0:
+        return string2;
+    else:
+        string2 += string1[0];
+        return copy_strings(string1[1:], string2)
+
+def findLetter(string, letter = ""):
+    if len(letter) > 0 and letter == letter.upper():
+        return letter
+    else:
+        return findLetter(string[1:], letter = string[1:][0])
+
+
+def binary_search_rec(array, number):
+    midpoint = int(len(array) / 2)
+    if array[midpoint] == number:
+        return True
+    if len(array) == 2 and array[midpoint] != number:
+        return False
+    else:
+        if number > array[midpoint]:
+            return binary_search_rec(array[midpoint + 1:], number)
+        else:
+            return binary_search_rec(array[:midpoint], number)
+
+
+def is_sorted(array):
+    if len(array) == 1:
+        return True
+    else:
+        if array[-1] >= array[-2]:
+            return is_sorted(array[0:-1])
+        else:
+            return False
+
+
+def bunny_ears(bunnies_num):
+    if bunnies_num == 0:
+        return 0
+    else:
+        return bunny_ears(bunnies_num - 1) + 2
+
+
+def count8(number):
+    if number == 0:
+        return 0
+    else:
+        right_digit = number % 10
+        left_digits = int(number / 10)
+        if right_digit == 8 and left_digits % 10 == 8:
+            return count8(int(number / 10)) + 2
+        elif right_digit == 8:
+            return count8(int(number / 10)) + 1
+        else:
+            return count8(int(number / 10))
+
+
+def all_star(string):
+    if len(string) <= 1:
+        return string
+    else:
+        return string[0] + "*" + all_star(string[1:])
+
+
+def pair_star(string):
+    if len(string) < 2:
+        return string
+    else:
+        if string[0] == string[1]:
+            return string[0] + "*" + pair_star(string[1:])
+        else:
+            return string[0] + pair_star(string[1:])
+
+
+def end_x(string):
+    if len(string) == 0:
+        return string
+    else:
+        if string[0] == "x":
+            return end_x(string[1:]) + string[0]
+        else:
+            return string[0] + end_x(string[1:])
+
+def count_pairs(string):
+    if len(string) <= 2:
+        return 0
+    if string[0] == string[2]:
+        return count_pairs(string[1:]) + 1
+    else:
+        return count_pairs(string[1:])
+
+
